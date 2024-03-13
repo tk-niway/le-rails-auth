@@ -15312,6 +15312,9 @@ class YARD::Tags::Library
   def directive_create(tag_name, tag_buf, parser); end
 
   # source://yard//lib/yard/tags/library.rb#202
+  def domain_directive(tag, parser); end
+
+  # source://yard//lib/yard/tags/library.rb#202
   def endgroup_directive(tag, parser); end
 
   # Show an example snippet of code for an object. The first line
@@ -15408,6 +15411,9 @@ class YARD::Tags::Library
   # source://yard//lib/yard/tags/library.rb#161
   def overload_tag(text); end
 
+  # source://yard//lib/yard/tags/library.rb#202
+  def override_directive(tag, parser); end
+
   # Documents a single method parameter (either regular or keyword) with a given name, type
   # and optional description.
   #
@@ -15418,6 +15424,9 @@ class YARD::Tags::Library
   #
   # source://yard//lib/yard/tags/library.rb#168
   def param_tag(text); end
+
+  # source://yard//lib/yard/tags/library.rb#168
+  def param_tuple_tag(text); end
 
   # source://yard//lib/yard/tags/library.rb#202
   def parse_directive(tag, parser); end
@@ -15465,6 +15474,9 @@ class YARD::Tags::Library
   # source://yard//lib/yard/tags/library.rb#168
   def raise_tag(text); end
 
+  # source://yard//lib/yard/tags/library.rb#168
+  def return_single_parameter_tag(text); end
+
   # Describes the return value (and type or types) of a method.
   # You can list multiple return tags for a method in the case
   # where a method has distinct return cases. In this case, each
@@ -15482,6 +15494,9 @@ class YARD::Tags::Library
   #
   # source://yard//lib/yard/tags/library.rb#168
   def return_tag(text); end
+
+  # source://yard//lib/yard/tags/library.rb#168
+  def return_value_parameter_tag(text); end
 
   # Sets the scope of a DSL method. Only applicable to DSL method
   # calls. Acceptable values are 'class' or 'instance'
@@ -15551,6 +15566,9 @@ class YARD::Tags::Library
   # source://yard//lib/yard/tags/library.rb#168
   def todo_tag(text); end
 
+  # source://yard//lib/yard/tags/library.rb#168
+  def type_tag(text); end
+
   # Lists the version of a class, module or method. This is
   # similar to a library version, but at finer granularity.
   # In some cases, version of specific modules, classes, methods
@@ -15589,6 +15607,9 @@ class YARD::Tags::Library
   # source://yard//lib/yard/tags/library.rb#168
   def yield_tag(text); end
 
+  # source://yard//lib/yard/tags/library.rb#168
+  def yieldparam_single_parameter_tag(text); end
+
   # Defines a parameter yielded by a block. If you define the
   # parameters with +@yieldparam+, you do not need to define
   # them via +@yield+ as well.
@@ -15600,6 +15621,9 @@ class YARD::Tags::Library
   # source://yard//lib/yard/tags/library.rb#168
   def yieldparam_tag(text); end
 
+  # source://yard//lib/yard/tags/library.rb#168
+  def yieldpublic_tag(text); end
+
   # Documents the value and type that the block is expected
   # to return to the method.
   #
@@ -15610,6 +15634,9 @@ class YARD::Tags::Library
   #
   # source://yard//lib/yard/tags/library.rb#168
   def yieldreturn_tag(text); end
+
+  # source://yard//lib/yard/tags/library.rb#168
+  def yieldself_tag(text); end
 
   private
 
