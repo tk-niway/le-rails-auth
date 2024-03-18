@@ -46,6 +46,7 @@ class Auth0Client
 
     Response.new(decoded_token, nil)
   rescue JWT::VerificationError, JWT::DecodeError => e
+    logger.debug e
     error = Error.new('Bad credentials', :unauthorized)
     Response.new(nil, error)
   end
