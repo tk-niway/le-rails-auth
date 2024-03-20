@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-
   get '/public', to: 'public#public'
 
   get '/private', to: 'private#private'
