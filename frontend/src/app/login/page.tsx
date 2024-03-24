@@ -5,10 +5,20 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const LoginPage = () => {
-  const { isAuthenticated, logout, getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated, logout, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+  // const { getAccessTokenWithPopup } = useAuth0(); // For Dev
 
   async function verifyToken() {
-    const accessToken = await getAccessTokenSilently({});
+    const accessToken = await getAccessTokenSilently({
+      authorizationParams: {
+        audience: process.env.NEXT_PUBLIC_AUTH0_IDENTIFIER!,
+        scope: process.env.NEXT_PUBLIC_AUTH0_SCOPE,
+      },
+    });
+
+    const idToken = await getIdTokenClaims();
+
+    console.log({ accessToken, idToken });
 
     const result = await axios.get("http://127.0.0.1:3333/private", {
       headers: {
@@ -16,7 +26,7 @@ const LoginPage = () => {
       },
     });
 
-    console.log({result});
+    console.log({ result });
   }
 
   // ログイン完了後にトークンを取得しRecoilへ格納

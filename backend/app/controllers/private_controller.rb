@@ -2,6 +2,8 @@ class PrivateController < ApplicationController
   before_action :authorize
 
   def private
+    Rails.logger.info "private_controller.rb: #{__LINE__}"
+
     render json: { message: 'Hello from a private endpoint! You need to be authenticated to see this.' }
   end
 

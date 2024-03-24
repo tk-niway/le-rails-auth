@@ -1,3 +1,4 @@
+# typed = true
 # frozen_string_literal: true
 
 module Secured
@@ -22,6 +23,14 @@ module Secured
     validation_response = Auth0Client.validate_token(token)
 
     @decoded_token = validation_response.decoded_token
+
+    Auth0Client.fetch_user(token)
+
+    # TODO: DBにユーザー情報があるか確認
+
+    # TODO: DBに情報がないなら登録
+
+    # TODO: ユーザー情報をリクエスト情報に追加
 
     return unless (error = validation_response.error)
 

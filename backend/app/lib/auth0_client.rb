@@ -1,9 +1,12 @@
+# typed: true
 # frozen_string_literal: true
 
 require 'jwt'
 require 'net/http'
 
 class Auth0Client
+  extend T::Sig
+
   # Auth0 Client Objects
   Error = Struct.new(:message, :status)
   Response = Struct.new(:decoded_token, :error)
@@ -57,6 +60,20 @@ class Auth0Client
   rescue JWT::VerificationError, JWT::DecodeError => e
     Rails.logger.error e
     error = Error.new('Bad credentials', :unauthorized)
+    Response.new(nil, error)
+  end
+
+  def self.fetch_user(token)
+    uri = URI.parse("https://#{ENV.fetch('AUTH0_DOMAIN')}/userinfo")
+
+    response = Net::HTTP.get_response(uri, { 'Authorization' => "Bearer #{token}" })
+
+    user_info = JSON.parse(response.body)
+
+    Rails.logger.info "User Info: #{user_info}"
+  rescue StandardError => e
+    Rails.logger.error e
+    error = Error.new('Unable to fetch user info', :internal_server_error)
     Response.new(nil, error)
   end
 end
